@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo List</title>
+  <style>
+    /* General Reset */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f0f8ff;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      min-height: 100vh;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: #4a90e2;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+    }
+
+    #todos {
+      width: 100%;
+      max-width: 500px;
+      margin-bottom: 20px;
+    }
+
+    #todos div {
+      display: flex;
+      align-items: center;
+      background-color: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      padding: 10px 15px;
+      margin-bottom: 10px;
+      transition: transform 0.2s ease-in-out;
+    }
+
+    #todos div:hover {
+      transform: scale(1.02);
+    }
+
+    #todos h2 {
+      font-size: 1.2rem;
+      margin: 0;
+      color: #333;
+      flex: 1;
+    }
+
+    #todos button {
+      background-color: #ff4d4f;
+      border: none;
+      color: white;
+      padding: 5px 10px;
+      font-size: 0.9rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-left: 10px;
+    }
+
+    #todos button:hover {
+      background-color: #d9363e;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      max-width: 400px;
+      padding: 10px;
+      font-size: 1rem;
+      border: 2px solid #ccc;
+      border-radius: 5px;
+      outline: none;
+      margin-bottom: 10px;
+      transition: border-color 0.3s ease;
+    }
+
+    input[type="text"]:focus {
+      border-color: #4a90e2;
+    }
+
+    button {
+      background-color: #4a90e2;
+      border: none;
+      color: white;
+      padding: 10px 15px;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #133c61;
+    }
+
+    footer {
+      margin-top: auto;
+      width: 100%;
+      background-color: #4a90e2;
+      color: white;
+      text-align: center;
+      padding: 10px 0;
+      box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    footer div {
+      font-size: 1rem;
+      font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      #todos h2 {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Todo List</h1>
+
+  <div id="todos">
+    <!-- here currently it's empty but soon it will be getting filled with the help of AddTodo Function -->
+  </div>
+
+  <div>
+    <input id="inp" type="text" placeholder="Enter your todo...">
+    <button onclick="addTodo()">Add Todo</button>
+  </div>
+
+  <footer>
+    <div>Created with ❤️ by Sourav HEHE</div>
+  </footer>
+
+  <script>
+    let currentIndex = 1;
+
+    function addTodo() {
+      const inputEl = document.getElementById("inp");
+      const todoText = inputEl.value.trim();
+
+      if (todoText === '') {
+        alert('Please enter a todo item.');
+        return;
+      }
+
+      const parentEl = document.getElementById("todos");
+
+      // Create new todo div
+      const newTodo = document.createElement('div');
+      newTodo.setAttribute("id", 'todo-' + currentIndex);
+
+      // Create new heading element
+      const newHeading = document.createElement('h2');
+      newHeading.textContent = currentIndex + '. ' + todoText;
+
+      // Create new button element
+      const newButton = document.createElement('button');
+      newButton.textContent = 'Delete';
+      newButton.setAttribute("onclick", "deleteTodo(" + currentIndex + ")");
+
+      // Append elements to the new todo div
+      newTodo.appendChild(newHeading);
+      newTodo.appendChild(newButton);
+
+      // Append new todo to the parent element
+      parentEl.appendChild(newTodo);
+
+      // Increment the index for the next todo item
+      currentIndex++;
+
+      // Clear the input field
+      inputEl.value = '';
+    }
+
+    function deleteTodo(index) {
+      const element = document.getElementById("todo-" + index);
+      if (element) {
+        element.parentNode.removeChild(element);
+      }
+    }
+  </script>
+</body>
+
+</html>
