@@ -45,7 +45,7 @@ It is a Basic Understanding of Js and Dom Project
 ├── index.html   # Entry HTML file
 ├── style.css    # Styling for the app
 ├── script.js    # JavaScript file for functionality
-└── README.md    # Project documentation
+└── README.md    # Project documentations
 ```
 
 
