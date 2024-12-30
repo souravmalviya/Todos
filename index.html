@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="todo.js"></script>
   <title>Todo List</title>
   <style>
     /* General Reset */
@@ -144,54 +145,7 @@
     <div>Created with ❤️ by Sourav HEHE</div>
   </footer>
 
-  <script>
-    let currentIndex = 1;
-
-    function addTodo() {
-      const inputEl = document.getElementById("inp");
-      const todoText = inputEl.value.trim();
-
-      if (todoText === '') {
-        alert('Please enter a todo item.');
-        return;
-      }
-
-      const parentEl = document.getElementById("todos");
-
-      // Create new todo div
-      const newTodo = document.createElement('div');
-      newTodo.setAttribute("id", 'todo-' + currentIndex);
-
-      // Create new heading element
-      const newHeading = document.createElement('h2');
-      newHeading.textContent = currentIndex + '. ' + todoText;
-
-      // Create new button element
-      const newButton = document.createElement('button');
-      newButton.textContent = 'Delete';
-      newButton.setAttribute("onclick", "deleteTodo(" + currentIndex + ")");
-
-      // Append elements to the new todo div
-      newTodo.appendChild(newHeading);
-      newTodo.appendChild(newButton);
-
-      // Append new todo to the parent element
-      parentEl.appendChild(newTodo);
-
-      // Increment the index for the next todo item
-      currentIndex++;
-
-      // Clear the input field
-      inputEl.value = '';
-    }
-
-    function deleteTodo(index) {
-      const element = document.getElementById("todo-" + index);
-      if (element) {
-        element.parentNode.removeChild(element);
-      }
-    }
-  </script>
+ 
 </body>
 
 </html>
