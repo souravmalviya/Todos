@@ -1,13 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<!-- WELCOME -->
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="todo.js"></script>
-  
-  <title>Todo List</title>
-  <style>
+
     /* General Reset */
     body {
       margin: 0;
@@ -127,26 +118,3 @@
         font-size: 1rem;
       }
     }
-  </style>
-</head>
-
-<body>
-  <h1>Todo List</h1>
-
-  <div id="todos">
-    <!-- here currently it's empty but soon it will be getting filled with the help of AddTodo Function -->
-  </div>
-
-  <div style="padding-right: 30px">
-    <input id="inp" type="text" placeholder="Enter your todo...">
-    <button onclick="addTodo()">Add Todo</button>
-  </div>
-
-  <footer>
-    <div>Created with ❤️ by Sourav HEHE</div>
-  </footer>
-
- 
-</body>
-
-</html>

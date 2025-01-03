@@ -1,47 +1,63 @@
+// JavaScript to manage todos
 
-let currentIndex = 1;
-
+// Function to add a new todo
 function addTodo() {
-  const inputEl = document.getElementById("inp");
-  const todoText = inputEl.value.trim();
+  const input = document.getElementById("inp");
+  const todoText = input.value.trim();
 
-  if (todoText === '') {
-    alert('Please enter a todo item.');
+  if (todoText === "") {
+    alert("Please enter a todo!");
     return;
   }
 
-  const parentEl = document.getElementById("todos");
+  const todosContainer = document.getElementById("todos");
 
-  // Create new todo div
-  const newTodo = document.createElement('div');
-  newTodo.setAttribute("id", 'todo-' + currentIndex);
+  // Create a todo div
+  const todoDiv = document.createElement("div");
 
-  // Create new heading element
-  const newHeading = document.createElement('h2');
-  newHeading.textContent = currentIndex + '. ' + todoText;
+  // Create a todo title
+  const todoTitle = document.createElement("h2");
+  todoTitle.textContent = todoText;
+  todoDiv.appendChild(todoTitle);
 
-  // Create new button element
-  const newButton = document.createElement('button');
-  newButton.textContent = 'Delete';
-  newButton.setAttribute("onclick", "deleteTodo(" + currentIndex + ")");
+  // Create an Edit button
+  const editButton = document.createElement("button");
+  editButton.textContent = "Edit";
+  editButton.onclick = function () {
+    editTodo(todoDiv, todoTitle);
+  };
+  todoDiv.appendChild(editButton);
 
-  // Append elements to the new todo div
-  newTodo.appendChild(newHeading);
-  newTodo.appendChild(newButton);
+  // Create a Delete button
+  const deleteButton = document.createElement("button");
+  deleteButton.textContent = "Delete";
+  deleteButton.onclick = function () {
+    deleteTodo(todoDiv);
+  };
+  todoDiv.appendChild(deleteButton);
 
-  // Append new todo to the parent element
-  parentEl.appendChild(newTodo);
-
-  // Increment the index for the next todo item
-  currentIndex++;
+  todosContainer.appendChild(todoDiv);
 
   // Clear the input field
-  inputEl.value = '';
+  input.value = "";
 }
 
-function deleteTodo(index) {
-  const element = document.getElementById("todo-" + index);
-  if (element) {
-    element.parentNode.removeChild(element);
+// Function to delete a todo
+function deleteTodo(todoDiv) {
+  const todosContainer = document.getElementById("todos");
+  todosContainer.removeChild(todoDiv);
+}
+
+// Function to edit a todo
+function editTodo(todoDiv, todoTitle) {
+  const newText = prompt("Edit your todo:", todoTitle.textContent);
+
+  if (newText !== null) {
+    const trimmedText = newText.trim();
+    if (trimmedText === "") {
+      alert("Todo cannot be empty!");
+    } else {
+      todoTitle.textContent = trimmedText;
+    }
   }
 }
